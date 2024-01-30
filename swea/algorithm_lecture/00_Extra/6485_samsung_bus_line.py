@@ -8,21 +8,23 @@ sys.stdin = open('input.txt')
 
 # 테스트 케이스
 for tc in range(1, int(input())+1):
-    # 버스 정류장 초기화
+    # 버스 정류장 초기화 1 ~ 5000
     bus_stop = {}
     for num in range(1, 5001):
         bus_stop[num] = 0
 
     # 루트 개수 입력 및 버스 정류장 카운트
     for route in range(int(input())):
+        # start 이상 end 이하의 범위 입력
         start, end = map(int, input().split())
         for num in range(start, end+1):
             bus_stop[num] += 1
     
     # 답 리스트에 추가
     answer = []
+    # 정류장 개수의 정류장 순회
     for p in range(int(input())):
+        #
         answer.append(bus_stop[int(input())])
-
 
     print(f'#{tc}', *answer)
