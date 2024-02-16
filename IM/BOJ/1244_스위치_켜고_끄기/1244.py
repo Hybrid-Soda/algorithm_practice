@@ -3,7 +3,9 @@
 # 스위치들의 마지막 상태를 출력
 
 import sys
+
 sys.stdin = open("input.txt")
+input = sys.stdin.readline
 
 N = int(input())  # N: 스위치 개수
 switch = [0] + list(map(int, input().split()))  # 스위치 상태
@@ -15,13 +17,17 @@ for gen, num in student:
         for i in range(num, N + 1, num):
             switch[i] = (switch[i] + 1) % 2
     else:  # 여자이면
-        for i in range(N // 2):
-            if i <= num < N - i + 1:
-                part = switch[num - i : num + i + 1]
-                if part != part[::-1]:
-                    break
-                else:
-                    pass
+        switch[num] = (switch[num] + 1) % 2
+        i = 1
+        while 1 <= num - i and num + i <= N:
+            if switch[num - i] == switch[num + i]:
+                switch[num - i] = (switch[num - i] + 1) % 2
+                switch[num + i] = (switch[num + i] + 1) % 2
+                i += 1
+            else:
+                break
 
-
-print(*switch[1:])
+for k in range(1, N+1):
+    print(switch[k], end=" ")
+    if k % 20 == 0:
+        print()
