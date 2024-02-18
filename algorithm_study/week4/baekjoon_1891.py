@@ -3,6 +3,11 @@
 import sys
 sys.stdin = open("input.txt")
 
+d, num = map(int, input().split())
+x, y = map(int, input().split())
+
+# 메모리 초과
+'''
 def div_conq(n, i, j, quad):
     if len(quad) == d:
         arr[i][j] = quad
@@ -29,3 +34,4 @@ try:
     print(arr[row-y][col+x])
 except:
     print(-1)
+'''
