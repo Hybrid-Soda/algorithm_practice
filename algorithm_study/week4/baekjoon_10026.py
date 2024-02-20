@@ -1,44 +1,46 @@
 # 10226 / 적록색약 /골드5
 
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open("input.txt")
 from collections import deque
 
-def search(i, j, a, weakness):
-    if not weakness: global cnt; cnt += 1
-    else: global w_cnt; w_cnt += 1
-
+# 색 영역 체크
+def BFS(pic, visited, i, j, color):
     Q = deque([[i, j]])
+    visited[i][j] = 1
+
     while Q:
-        i, j = Q.popleft()
+        ci, cj = Q.popleft()
         for di, dj in dr:
-            ni, nj = i + di, j + dj
-            if 0<=ni<N and 0<=nj<N:
-                if pic[ni][nj] == a:
-                    if weakness:
-                        pic[ni][nj] = 0
-                    else:
-                        if a == 'R':
-                            pic[ni][nj] = 'g'
-                        else:
-                            pic[ni][nj] = a.lower()
+            ni, nj = ci + di, cj + dj
+            if 0 <= ni < N and 0 <= nj < N:
+                if not visited[ni][nj] and pic[ni][nj] == color:
+                    visited[ni][nj] = 1
                     Q.append([ni, nj])
+
+# 영역 개수 세기
+def count_area(pic):
+    visited = [[0] * N for _ in range(N)]
+    cnt = 0
+
+    for i in range(N):
+        for j in range(N):
+            if not visited[i][j]:
+                BFS(pic, visited, i, j, pic[i][j])
+                cnt += 1
+    
+    return cnt
 
 dr = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 N = int(input())
-pic = [list(input()) for _ in range(N)]
-cnt, w_cnt = 0, 0
+pic = [input() for _ in range(N)]
 
-for i in range(N):
-    for j in range(N):
-        for char in ['R', 'G', 'B']:
-            if pic[i][j] == char:
-                search(i, j, char, False)
+n_cnt = count_area(pic)  # 일반인
+pic = [pic[i].replace('G', 'R') for i in range(N)]  # 변환
+w_cnt = count_area(pic) # 적록색약
 
-for i in range(N):
-    for j in range(N):
-        for char in ['r', 'g', 'b']:
-            if pic[i][j] == char:
-                search(i, j, char, True)
+print(n_cnt, w_cnt)
 
-print(cnt, w_cnt)
+'''
+34072KB / 80ms
+'''
