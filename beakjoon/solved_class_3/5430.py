@@ -2,18 +2,22 @@
 
 import sys
 sys.stdin = open("input.txt")
+from collections import deque
+input = sys.stdin.readline
 
 for tc in range(int(input())):
     p, n = input().replace('RR', ''), int(input())
-    arr = input().strip('[]').split(',')
-    if arr == ['']: arr = []
+    Q = deque(input().strip()[1:-1].split(','))
+    rev = 0
+    if '' in Q: Q.popleft()
 
     for c in p:
-        if c == 'R':  arr.reverse()
+        if c == 'R': rev += 1
         elif c == 'D':
             try:
-                arr.pop(0)
-            except IndexError:
-                print('error'); break
+                if rev % 2 == 0: Q.popleft()
+                else: Q.pop()
+            except IndexError: print('error'); break
     else:
-        print(f"[{','.join(arr)}]")
+        if rev % 2 != 0: Q.reverse()
+        print(f"[{','.join(Q)}]")
