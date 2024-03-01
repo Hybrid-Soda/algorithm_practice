@@ -4,24 +4,17 @@ import sys
 sys.stdin = open("input.txt")
 from collections import deque
 
-N, M = map(int, input().split())  # 사다리 수, 뱀의 수
-ladder = [tuple(map(int, input().split())) for _ in range(N)]
-snake = [tuple(map(int, input().split())) for _ in range(M)]
-dist = [1, 1] + [0] * 99
-print(ladder)
+warp = {int(x[0]): int(x[1]) for x in [input().split() for _ in range(sum(map(int, input().split())))]}
+Q, dist = deque([1]), [0] * 101
 
-Q = deque([1])
 while Q:
-    n = Q.popleft()
-    dist
+    now = Q.popleft()
+    if now == 100: print(dist[100]); break
     for i in range(1, 7):
-        next = n + i
-        # 사다리
-        if next:
-            pass
-        # 뱀
-        elif next:
-            pass
-        else:
-            Q.append()
-            
+        next = now + i
+        if next <= 100 and not dist[next]:
+            if next in warp.keys():
+                dist[next] = dist[now] + 1
+                next = warp[next]
+            if not dist[next]: dist[next] = dist[now] + 1
+            Q.append(next)
