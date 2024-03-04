@@ -1,6 +1,6 @@
 # 5525 IOIOI
 
-import sys 
+import sys
 sys.stdin = open('input.txt')
 
 # KMP 알고리즘 : 100점
@@ -30,6 +30,7 @@ print(KMP('I'+'OI'*N, S))
 N, M, S = int(input()), int(input()), input()
 char, cnt = 'I' + 'OI'*N, 0
 for i in range(M-len(char)+1):
-    if S[i] == 'I' and S[i:i+len(char)] == char: cnt += 1
+    if S[i:i+len(char)] == char:
+        cnt += 1
 print(cnt)
 '''
