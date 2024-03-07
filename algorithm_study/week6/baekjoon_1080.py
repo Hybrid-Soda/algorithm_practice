@@ -9,12 +9,10 @@ for i in range(N):
     for j in range(M):
         if sub[i][j]:  # 차이가 있고
             if i < N - 2 and j < M - 2:  # 뒤 부분에 충분히 바꿀만한 공간이 있으면 바꿈
-
                 for ci in range(3):
                     for cj in range(3):
                         sub[i+ci][j+cj] = 1 - sub[i+ci][j+cj]
                 cnt += 1
-
             else:  # 뒤 부분에 바꿀 공간이 없으면 불가능
                 exit(print(-1))
 print(cnt)
