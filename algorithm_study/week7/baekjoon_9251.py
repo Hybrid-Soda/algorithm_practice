@@ -2,3 +2,6 @@
 
 import sys 
 sys.stdin = open('input.txt') 
+
+str1, str2 = input(), input()
+
