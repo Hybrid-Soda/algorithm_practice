@@ -10,7 +10,7 @@ class Micro:
         self.col = col
         self.cnt = cnt
         self.dir = dir
-        self.pos = row*N + col
+        self.pos = (row//N)*N + col
 
     def change_dir(self):
         self.cnt //= 2
@@ -29,7 +29,7 @@ def task(info):
     for micro in info:
         micro.row += dr[micro.dir]
         micro.col += dc[micro.dir]
-        micro.pos = micro.row*N + micro.col
+        micro.pos = (micro.row//N)*N + micro.col
 
         if not (0 < micro.row < N-1 and 0 < micro.col < N-1):
             micro.change_dir()
