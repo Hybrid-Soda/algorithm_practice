@@ -1,57 +1,58 @@
 # 2382 미생물 격리
-# 목표 : M시간 후 남아있는 미생물 수의 총 합 구하기
 
-import sys
-sys.stdin = open("input.txt")
+from collections import defaultdict
 
-class Micro:
-    def __init__(self, row, col, cnt, dir):
-        self.row = row
-        self.col = col
-        self.cnt = cnt
-        self.dir = dir
-        self.pos = (row//N)*N + col
+def del_micro(kill):
+    while kill:
+        micro = kill.pop()
+        if micro: micros.remove(micro)
 
-    def change_dir(self):
-        self.cnt //= 2
-        if self.dir in [1, 3]: self.dir += 1
-        else: self.dir -= 1
+def med(i):
+    # 개체수 감소
+    micros[i][2] //= 2
+    # 군집 전멸
+    if not micros[i][2]:
+        return micros[i]
+    # 방향 변환
+    if micros[i][3] in (1, 3):
+        micros[i][3] += 1
+    else:
+        micros[i][3] -= 1
+    return
 
-    def merge(self, other):
-        if self.cnt > other.cnt:
-            self.cnt += other.cnt
-            other.cnt = 0
+def merge(m):
+    m.sort(key=lambda x: x[2])
+    idx = micros.index(m[-1])
+    micros[idx][2] = sum(i[2] for i in m)
+    m.pop()
+    return m
+
+def move():
+    kill, pos = [], defaultdict(list)
+    # 이동
+    for i in range(len(micros)):
+        micros[i][0] += ds[micros[i][3]][0]
+        micros[i][1] += ds[micros[i][3]][1]
+        r, c = micros[i][0], micros[i][1]
+
+        # 약품
+        if not (0 < r < N-1 and 0 < c < N-1):
+            kill.append(med(i))
         else:
-            other.cnt += self.cnt
-            self.cnt = 0
+            pos[(r, c)].append(micros[i])
+    del_micro(kill)
 
-def task(info):
-    for micro in info:
-        micro.row += dr[micro.dir]
-        micro.col += dc[micro.dir]
-        micro.pos = (micro.row//N)*N + micro.col
+    # 병합
+    for micro in pos.values():
+        if len(micro) > 1:
+            kill.extend(merge(micro))
+    del_micro(kill)
 
-        if not (0 < micro.row < N-1 and 0 < micro.col < N-1):
-            micro.change_dir()
-
-            if not micro.cnt:
-                info.remove(micro)
-
-    info.sort(key=lambda x: (x.pos, x.cnt))
-
-    idx = 0
-    while idx < len(info)-1:
-        if info[idx].pos == info[idx+1].pos:
-            info[idx+1].cnt += info[idx].cnt
-            info.remove(info[idx])
-            idx -= 1
-        idx += 1
-
-dr = (0, -1, 1, 0, 0)
-dc = (0, 0, 0, -1, 1)
+ds = ((0, 0), (-1, 0), (1, 0), (0, -1), (0, 1))
 
 for tc in range(int(input())):
     N, M, K = map(int, input().split())
-    info = [Micro(*map(int, input().split())) for _ in range(K)]
-    for time in range(M): task(info)
-    print(f"#{tc+1}", sum(micro.cnt for micro in info))
+    micros = [list(map(int, input().split())) for _ in range(K)]
+    for time in range(M):
+        move()
+    print(f"#{tc+1}", sum(micro[2] for micro in micros))

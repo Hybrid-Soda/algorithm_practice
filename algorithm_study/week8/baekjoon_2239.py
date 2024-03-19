@@ -1,8 +1,5 @@
 # 2239 스도쿠
 
-import sys 
-sys.stdin = open('input.txt')
-
 # 백트래킹 (188번 반복) / 140452KB / 4024ms
 def valid(r, c, n):
     for k in range(9):

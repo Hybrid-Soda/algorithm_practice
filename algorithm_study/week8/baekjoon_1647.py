@@ -1,8 +1,5 @@
 # 1647 도시 분할 계획
 
-import sys 
-sys.stdin = open('input.txt')
-
 # 특정 값의 루트 찾는 함수
 def find(x):
     if parent[x] == x: return x
