@@ -30,10 +30,10 @@
 2. Advanced Data Structure
     1. Tree
         1. Binary Search Tree
-        2. AVL Tree
-        3. Red-Black Tree
-        4. Segment Tree
-        5. Fenwick Tree / Binary Indexed Tree
+        2. AVL Tree - __not yet__
+        3. Red-Black Tree - __not yet__
+        4. Segment Tree - __not yet__
+        5. Fenwick Tree / Binary Indexed Tree - __not yet__
     2. Graph
         1. DFS
         2. BFS
