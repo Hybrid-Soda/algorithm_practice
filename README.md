@@ -8,7 +8,7 @@
 
 ## Algorithm Summary Index
 
-1. Basic Algorithm & Data Structure  
+1. Basic Algorithm & Data Structure
     1. Sort algorithm
         - Bubble Sort
         - Selection Sort
@@ -56,9 +56,9 @@
         - Dijkstra Algorithm
         - A* Algorithm
     3. Network Flow & Matching Problem
-        - Ford-Fulkerson Algorithm
-        - Edmonds-Karp Algorithm
-        - Bipartite Matching
+        - Ford-Fulkerson Algorithm - __not yet__
+        - Edmonds-Karp Algorithm - __not yet__
+        - Bipartite Matching - __not yet__
 
 5. Special Algorithm
     1. Lowest Common Ancestor, LCA
@@ -72,5 +72,5 @@
     2. Greedy
 
 7. Practical Problem Solving Strategies
-    1. Bit Manipulation
-    2. Numerical Algorithms
+    1. Bit Manipulation - __not yet__
+    2. Numerical Algorithms - __not yet__
