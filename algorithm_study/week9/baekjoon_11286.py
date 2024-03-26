@@ -2,3 +2,8 @@
 
 import sys 
 sys.stdin = open('input.txt') 
+
+import heapq
+
+
+n = int(input())
