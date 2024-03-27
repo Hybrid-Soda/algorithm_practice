@@ -1,8 +1,6 @@
 # 11286 절대값 힙
 
-import sys
 from heapq import heappush, heappop
-input = sys.stdin.readline
 
 Q = []
 for _ in range(int(input())):
