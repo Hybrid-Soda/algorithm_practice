@@ -24,7 +24,6 @@
         - Queue
         - Hash Table
         - Heap
-    ![data-structure](/assets/data_structure.png)
 
 
 2. Advanced Data Structure

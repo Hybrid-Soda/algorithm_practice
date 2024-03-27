@@ -17,6 +17,9 @@ def prim(graph, start, V):
 
     while heap:
         weight, v = heappop(heap)
+
+        if MST[v]: continue  # 방문한 곳이라면 넘어감
+
         MST[v] = 1
         sum_weight += weight  # 누적합에 합산
 
