@@ -35,15 +35,15 @@ from heapq import heappush, heappop
 
 def dijkstra_heap(graph, start):
     V = len(graph)
-    dists = [float('inf')] * V
-    dists[start] = 0
+    dist = [float('inf')] * V
+    dist[start] = 0
     Q = [(0, start)]
 
     while Q:
         now_dist, now = heappop(Q)
 
         # 이미 처리된 정점의 거리보다 긴 경우 스킵
-        if dists[now] < now_dist:
+        if dist[now] < now_dist:
             continue
         
         # 현재 노드에 연결된 노드 순회
@@ -51,9 +51,9 @@ def dijkstra_heap(graph, start):
             next_dist = now_dist + weight
 
             # 더 짧은 경로를 발견한 경우 업데이트하고 우선순위 큐에 추가
-            if next_dist < dists[next]:
-                dists[next] = next_dist
+            if next_dist < dist[next]:
+                dist[next] = next_dist
                 heappush(Q, (next_dist, next))
 
-    return dists
+    return dist
 
