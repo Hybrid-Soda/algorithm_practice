@@ -32,7 +32,3 @@ for i in range(N):
         ans = min(ans, cost)
 
 print(ans)
-
-'''
-순열로 완전탐색 할 시 -> 20922789888000 번 계산 해야함
-'''
