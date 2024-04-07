@@ -66,6 +66,7 @@
         - Knuth-Morris-Pratt, KMP Algorithm
         - Suffix Array
         - Suffix Tree
+    3. Traveling Salesman Problem, TSP
 
 6. Algorithm Design Paradigm
     1. Recursion
