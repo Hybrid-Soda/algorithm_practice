@@ -58,6 +58,7 @@
         - Ford-Fulkerson Algorithm - __not yet__
         - Edmonds-Karp Algorithm - __not yet__
         - Bipartite Matching - __not yet__
+    4. Topological Sort
 
 5. Special Algorithm
     1. Lowest Common Ancestor, LCA
