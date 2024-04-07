@@ -1,42 +1,20 @@
 # 14567 선수과목 (Prerequisite)
-import sys
-from collections import deque
-sys.stdin = open('input.txt')
 
-N, M = map(int, input().split())  # 과목 수, 선수 조건 수
-relations = [list(map(int, input().split())) for _ in range(M)]
-graph = [[] for _ in range(N+1)]  # 그래프 초기화
-in_degree = [0] * (N+1)  # 각 노드의 진입 차수
+N, M = map(int, input().split())
+graph = [[] for _ in range(N+1)]
+depth = [1] * (N+1)
 
-# 그래프 생성 및 진입 차수 계산
-for pre, post in relations:
+# 그래프 생성
+for _ in range(M):
+    pre, post = map(int, input().split())
     graph[pre].append(post)
-    in_degree[post] += 1
 
-# 위상 정렬
-result = []
-Q = deque()
-
-# 처음 시작할 때 진입 차수가 0인 노드를 큐에 삽입
-for i in range(1, N+1):
-    if in_degree[i] == 0:
-        Q.append(i)
-
-# 큐가 빌 때까지 반복
-while Q:
-    now = Q.popleft()
-    result.append(now)
-
-    # 해당 원소와 연결된 노드들의 진입 차수에서 1 빼기
+# 진입 차수 계산
+for now in range(1, N+1):
     for next in graph[now]:
-        in_degree[next] -= 1
+        depth[next] = max(depth[next], depth[now] + 1)
 
-        # 새롭게 진입 차수가 0이 되는 노드를 큐에 삽입
-        if in_degree[next] == 0:
-            Q.append(next)
-
-# 위상 정렬을 수행한 결과 출력
-print(*result)
+print(*depth[1:])
 
 '''
     <위상 정렬(topological sorting)>
