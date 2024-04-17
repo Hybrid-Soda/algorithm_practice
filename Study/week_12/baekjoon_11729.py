@@ -1,9 +1,6 @@
 # 11729 하노이탑 이동 순서
 # 1 - 1 / 2 - 3 / 3 - 7 / 4 - 15 / 5 - 31
 
-import sys
-sys.stdin = open('input.txt')
-
 # 옮길 원판 개수, 시작 지점, 목표 지점
 def move(n, start, end):
     if n == 1:
