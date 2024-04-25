@@ -29,9 +29,13 @@ for _ in range(M):
 
     while a < b:
         if a & 1:
-            pass
+            max_res = max(max_res, max_tree[a])
+            min_res = min(min_res, min_tree[a])
+            a += 1
         if ~(b & 1):
-            pass
+            max_res = max(max_res, max_tree[b])
+            min_res = min(min_res, min_tree[b])
+            b -= 1
         a >>= 1
         b >>= 1
     
