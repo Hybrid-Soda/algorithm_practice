@@ -1,24 +1,16 @@
 # 개인정보 수집 유효기간 (2023 KAKAO BLIND RECRUITMENT)
 
-from datetime import datetime
-
 def solution(today, terms, privacies):
-    answer = []
-    termsDict = {char.split()[0]: int(char.split()[1]) for char in terms}
+    ans = []
+    termsDict = {char[0]: int(char[2:]) * 28 for char in terms}
     nowY, nowM, nowD = map(int, today.split('.'))
+    now = nowY * 28 * 12 + nowM * 28 + nowD
 
-    for privacy in privacies:
-        pre, var = privacy.split()
+    for i in range(len(privacies)):
+        pre, case = privacies[i].split()
         preY, preM, preD = map(int, pre.split('.'))
+        pre = preY * 28 * 12 + preM * 28 + preD + termsDict[case]
 
-        # if termsDict[var] > month:
+        if pre <= now: ans.append(i+1)
 
-    return answer
-
-
-a = solution(
-    "2022.05.19",
-    ["A 6", "B 12", "C 3"],
-    ["2021.05.02 A", "2021.07.01 B", "2022.02.19 C", "2022.02.20 C"]
-)
-print(a)
+    return ans

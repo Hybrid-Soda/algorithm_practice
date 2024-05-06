@@ -6,6 +6,8 @@ def solution(board, moves):
     for j in moves:
         i = 0
         j -= 1
+
+        # 인형 뽑기
         while i < len(board):
             if board[i][j]:
                 stack.append(board[i][j])
@@ -13,14 +15,10 @@ def solution(board, moves):
                 break
             i += 1
 
+        # 같은 인형 2개가 있다면 제거
         if len(stack) > 1 and stack[-1] == stack[-2]:
             stack.pop()
             stack.pop()
             ans += 2
 
     return ans
-
-
-board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
-moves = [1,5,3,5,1,2,1,4]
-print(solution(board, moves))
