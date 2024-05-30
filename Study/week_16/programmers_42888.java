@@ -1,0 +1,2 @@
+// 오픈채팅방 (2019 KAKAO BLIND RECRUITMENT)
+
