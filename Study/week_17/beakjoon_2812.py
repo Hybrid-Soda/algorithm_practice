@@ -1,10 +1,6 @@
 # 2812 크게 만들기
 
-import sys
-sys.stdin = open('input.txt')
-
 # 높은 자릿수부터 그 다음 수와 비교하여 낮으면 제거
-
 N, K = map(int, input().split())
 num = input()
 S = [num[0]]
