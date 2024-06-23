@@ -1,25 +1,14 @@
 # 2629 양팔저울
+_, weight_N = int(input()), list(map(int, input().split()))
+_, weight_M = int(input()), list(map(int, input().split()))
 
-import sys
-sys.stdin = open('input.txt')
+DP = {0}
 
-N = int(input())
-weight_N = list(map(int, input().split()))
+for w in weight_N:
+    tmp = set()
+    for i in DP:
+        tmp.add(i + w)
+        tmp.add(abs(i - w))
+    DP |= tmp
 
-M = int(input())
-weight_M = list(map(int, input().split()))
-
-for w in weight_M:
-    # 추의 무게와 같은 무게일때
-    if w in weight_N:
-        break
-    # 추끼리의 합,차로 도출되는 무게일때
-    total_weight = 0
-    for i in weight_N:
-        total_weight += i
-        if i == w or w:
-            break
-    # 두 추의 무게 사이에 각각 1의 차이로 있을때
-    
-    # 추를 두 그룹으로 나눈다
-    
+print(*['Y' if w in DP else 'N' for w in weight_M])
